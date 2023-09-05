@@ -142,3 +142,113 @@ function getBooks() {
 function getBook(id) {
   return data.find((d) => d.id === id);
 }
+
+/*
+const book = getBook(2);
+book;
+
+// const title = book.title;
+// const author = book.author;
+
+const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
+  book;
+
+console.log(author, title, genres);
+
+// const primaryGenre = genres[0];
+// const secondaryGenre = genres[1];
+
+const [primaryGenre, secondaryGenre] = genres;
+
+publicationDate;
+
+function getYear(str) {
+  return str.split("-")[0];
+}
+
+const inlineGetYear = (str) => str.split("-")[0];
+
+console.log(getYear(publicationDate));
+
+console.log(getYear(inlineGetYear(publicationDate)));
+
+*/
+/*
+const books = getBooks();
+
+const x = [1, 2, 3, 4, 5].map((el) => el * 2);
+console.log(x);
+
+books;
+
+const titles = books.map((el) => el.title);
+console.log(titles);
+
+const essentialData = books.map((book) => ({
+  title: book.title,
+  author: book.author,
+}));
+essentialData;
+
+const publicationYear = (year) => year.split("-")[0];
+
+const newBooks = books.filter(
+  (book) => publicationYear(book.publicationDate) >= 1975
+);
+newBooks;
+
+const fantasyBooks = books
+  .filter((book) => book.genres.includes("fantasy"))
+  .map((book) => book.title);
+fantasyBooks;
+
+const pagesAllBooks = books.reduce((acc, book) => acc + book.pages, 0);
+pagesAllBooks;
+
+function totleReviews(book) {
+  const goodreads = book.reviews?.goodreads?.reviewsCount ?? 0;
+  const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
+  return goodreads + librarything;
+}
+
+const reviewsAllBooks = books.reduce(
+  (acc, book) => acc + totleReviews(book),
+  0
+);
+reviewsAllBooks;
+
+const sortedByPages = books.slice().sort((a, b) => a.pages - b.pages);
+sortedByPages;
+
+//1) Add book object to array
+const newBook = {
+  id: 6,
+  title: "The Dispossessed",
+  author: "Ursela K. Leguin",
+};
+const booksAfterAdd = [...books, newBook];
+booksAfterAdd;
+
+//2) Delete book object from array
+const booksAfterDelete = booksAfterAdd.filter((book) => book.id !== 3);
+booksAfterDelete;
+
+//3) Update book object in the array
+const booksAfterUpdate = booksAfterDelete.map((book) =>
+  book.id === 1 ? { ...book, pages: 1 } : book
+);
+booksAfterUpdate;
+*/
+
+/*
+fetch("https://jsonplaceholder.typicode.com/todos").then((res) =>
+  res.json().then((data) => console.log(data))
+);*/
+
+async function getTodos() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const data = await res.json();
+  console.log(data);
+}
+
+getTodos();
