@@ -10,7 +10,7 @@ export default function App() {
 }
 
 function Logo() {
-  return <h1>🏝️ Far Away 💼</h1>;
+  return <h1>🏝️ Far Away🧳</h1>;
 }
 
 function Form() {
@@ -27,8 +27,8 @@ function PackingList() {
 
 function Stats() {
   return (
-    <footer>
-      You have X items on your list, and you have already packed X (X)
+    <footer className="stats">
+      You have X items on your list, and you have already packed X (X%)
     </footer>
   );
 }
