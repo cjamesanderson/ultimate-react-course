@@ -1,3 +1,10 @@
+:root {
+  --color-lightest: #cccccc;
+  --color-light: #888888;
+  --color-medium: #555555;
+  --color-dark: #333333;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -38,4 +45,38 @@ h1 {
   justify-content: center;
   gap: 0.8rem;
 
+}
+
+.task-list {
+  list-style: none;
+}
+
+.task-list li {
+  padding: 1.2rem;
+  row-gap: 1.6rem;
+  text-wrap:nowrap;
+  overflow: hidden;
+}
+
+.task-list li:hover {
+  background-color: var(--color-lightest);
+  cursor: pointer;
+}
+
+.task-list label {
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: -2px;
+}
+
+.task-selector {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 4rem;
+  padding: 4rem;
+}
+
+.selected-task h3{
+  text-transform: uppercase;
+  letter-spacing: -2px;
 }

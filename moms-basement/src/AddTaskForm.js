@@ -7,13 +7,13 @@ export default function AddTaskForm() {
             <label>Unpleasantness: </label>
             <select>
                 {Array.from({length: 10}, (_, i) => i + 1).map((key =>
-                    <option value={key}>{key}</option>))}
+                    <option value={key} key={key}>{key}</option>))}
             </select>
             
             <label>Priority: </label>
             <select>
                 {Array.from({length: 5}, (_, i) => i + 1).map((key =>
-                    <option value={key}>{key}</option>))}
+                    <option value={key} key={key}>{key}</option>))}
             </select>
             <button>Add</button>
         </form>
