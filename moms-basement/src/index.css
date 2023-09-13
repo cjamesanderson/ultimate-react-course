@@ -69,6 +69,10 @@ h1 {
   letter-spacing: -2px;
 }
 
+.task-list label:hover {
+  cursor: pointer;
+}
+
 .task-selector {
   display: grid;
   grid-template-columns: auto auto;
