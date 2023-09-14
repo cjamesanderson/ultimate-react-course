@@ -30,7 +30,8 @@ body {
 
 h1 {
   text-align: center;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   font-size: 4rem;
   text-transform: uppercase;
   font-weight: 400;
@@ -44,7 +45,6 @@ h1 {
   align-items: center;
   justify-content: center;
   gap: 0.8rem;
-
 }
 
 .task-list {
@@ -54,7 +54,7 @@ h1 {
 .task-list li {
   padding: 1.2rem;
   row-gap: 1.6rem;
-  text-wrap:nowrap;
+  text-wrap: nowrap;
   overflow: hidden;
 }
 
@@ -80,7 +80,13 @@ h1 {
   padding: 4rem;
 }
 
-.selected-task h3{
+.selected-task h3 {
   text-transform: uppercase;
   letter-spacing: -2px;
+}
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
