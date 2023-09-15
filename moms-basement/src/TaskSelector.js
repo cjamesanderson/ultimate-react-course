@@ -31,12 +31,12 @@ export const initialTasks = [
   },
 ];
 
-export default function TaskSelector() {
+export default function TaskSelector({ tasks }) {
   return (
     <>
       <div className="task-selector">
-        <TaskList />
-        <SelectedTask task={initialTasks[0]} />
+        <TaskList tasks={tasks} />
+        <SelectedTask task={tasks[0]} />
       </div>
       <div className="sort-controls">
         <form>
