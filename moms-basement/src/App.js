@@ -8,6 +8,8 @@ export default function App() {
   const [tasks, setTasks] = useState(initialTasks);
 
   function handleAddTask(task) {
+    setTasks([...tasks, task]);
+
     console.log(task);
   }
 
