@@ -1,5 +1,6 @@
 import TaskList from "./TaskList";
 import SelectedTask from "./SelectedTask";
+import { useState } from "react";
 
 export const initialTasks = [
   {
@@ -31,12 +32,21 @@ export const initialTasks = [
   },
 ];
 
-export default function TaskSelector({ tasks }) {
+export default function TaskSelector({ tasks, onUpdateTask }) {
+  const [currentSelectedTask, setCurrentSelectedTask] = useState(tasks[0]);
+
+  function handleChangeSelectedTask(task) {
+    setCurrentSelectedTask(task);
+  }
+
   return (
     <>
       <div className="task-selector">
-        <TaskList tasks={tasks} />
-        <SelectedTask task={tasks[0]} />
+        <TaskList
+          tasks={tasks}
+          onChangeSelectedTask={handleChangeSelectedTask}
+        />
+        <SelectedTask task={currentSelectedTask} onUpdateTask={onUpdateTask} />
       </div>
       <div className="sort-controls">
         <form>
