@@ -38,6 +38,7 @@ export default function TaskSelector({
   currentSelectedTask,
   onChangeSelectedTask,
   onAddTaskMinutes,
+  onDeleteTask,
 }) {
   const [sortBy, setSortBy] = useState("unpleasantness");
 
@@ -68,6 +69,7 @@ export default function TaskSelector({
           tasks={sortedTasks}
           onChangeSelectedTask={onChangeSelectedTask}
           taskOrder={sortBy}
+          onDeleteTask={onDeleteTask}
         />
         <SelectedTask
           task={currentSelectedTask}

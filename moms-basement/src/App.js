@@ -42,6 +42,14 @@ export default function App() {
     setTaskMinutes((curr) => curr + minutes * unpleasantness);
   }
 
+  function handleDeleteTask(target) {
+    if (
+      window.confirm(
+        'Are you sure you want to delete task "' + target.name + '"?'
+      )
+    )
+      setTasks((curr) => curr.filter((task) => task.id !== target.id));
+  }
   return (
     <>
       <Title />
@@ -52,6 +60,7 @@ export default function App() {
         currentSelectedTask={currentSelectedTask}
         onChangeSelectedTask={handleChangeSelectedTask}
         onAddTaskMinutes={handleAddTaskMinutes}
+        onDeleteTask={handleDeleteTask}
       />
       <Footer taskMinutes={taskMinutes} />
     </>

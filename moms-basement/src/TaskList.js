@@ -1,6 +1,10 @@
 import Task from "./Task";
 
-export default function TaskList({ tasks, onChangeSelectedTask }) {
+export default function TaskList({
+  tasks,
+  onChangeSelectedTask,
+  onDeleteTask,
+}) {
   return (
     <ul className="task-list">
       {tasks.map((task) => (
@@ -8,6 +12,7 @@ export default function TaskList({ tasks, onChangeSelectedTask }) {
           task={task}
           key={task.name}
           onChangeSelectedTask={onChangeSelectedTask}
+          onDeleteTask={onDeleteTask}
         />
       ))}
     </ul>

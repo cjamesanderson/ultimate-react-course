@@ -99,3 +99,21 @@ h1 {
   font-weight: 700;
   padding: 3.2rem 0;
 }
+
+.task {
+  display: grid;
+  grid-template-columns: 5;
+  overflow: hidden;
+}
+
+.task-info {
+  grid-column: 1/4;
+  justify-content: left;
+}
+
+.delete-task {
+  display: flex;
+  grid-column: 5;
+  justify-content: center;
+  align-items: center;
+}
