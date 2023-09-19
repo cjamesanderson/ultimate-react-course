@@ -1,7 +1,10 @@
 export default function Task({ task, onChangeSelectedTask, onDeleteTask }) {
   return (
     <li onClick={() => onChangeSelectedTask(task)} key={task.id}>
-      <div className="task">
+      <div
+        className="task"
+        style={task.completed ? { textDecoration: "line-through" } : {}}
+      >
         <div className="task-info">
           <span>
             <label>{task.name}</label> (
