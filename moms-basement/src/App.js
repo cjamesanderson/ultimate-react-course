@@ -1,15 +1,12 @@
 import AddTaskForm from "./AddTaskForm.js";
 import Title from "./Title.js";
 import TaskSelector from "./TaskSelector.js";
-import { initialTasks } from "./TaskSelector.js";
 import { useState } from "react";
 import Footer from "./Footer.js";
 
 export default function App() {
-  const [tasks, setTasks] = useState(initialTasks);
-  const [currentSelectedTask, setCurrentSelectedTask] = useState(
-    initialTasks[0]
-  );
+  const [tasks, setTasks] = useState([]);
+  const [currentSelectedTask, setCurrentSelectedTask] = useState(null);
   const [taskMinutes, setTaskMinutes] = useState(0);
 
   function handleAddTask(task) {

@@ -2,36 +2,6 @@ import TaskList from "./TaskList";
 import SelectedTask from "./SelectedTask";
 import { useState } from "react";
 
-export const initialTasks = [
-  {
-    name: "clean toilet",
-    id: 1,
-    creation_date: new Date("5-10-23").getTime(),
-    completed: false,
-    minutes_logged: 0,
-    unpleasantness: 5,
-    priority: 5,
-  },
-  {
-    name: "do laundry",
-    id: 2,
-    creation_date: new Date("5-11-23").getTime(),
-    completed: false,
-    minutes_logged: 5,
-    unpleasantness: 2,
-    priority: 4,
-  },
-  {
-    name: "clean out mom's basement",
-    id: 3,
-    creation_date: new Date("5-13-23").getTime(),
-    completed: false,
-    minutes_logged: 50,
-    unpleasantness: 9,
-    priority: 1,
-  },
-];
-
 export default function TaskSelector({
   tasks,
   onUpdateTask,
@@ -71,11 +41,13 @@ export default function TaskSelector({
           taskOrder={sortBy}
           onDeleteTask={onDeleteTask}
         />
-        <SelectedTask
-          task={currentSelectedTask}
-          onUpdateTask={onUpdateTask}
-          onAddTaskMinutes={onAddTaskMinutes}
-        />
+        {currentSelectedTask !== null && (
+          <SelectedTask
+            task={currentSelectedTask}
+            onUpdateTask={onUpdateTask}
+            onAddTaskMinutes={onAddTaskMinutes}
+          />
+        )}
       </div>
       <div className="sort-controls">
         <form>
