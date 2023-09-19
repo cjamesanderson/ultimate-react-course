@@ -89,4 +89,13 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 4rem;
+}
+
+.footer-message {
+  background-color: var(--color-dark);
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+  padding: 3.2rem 0;
 }

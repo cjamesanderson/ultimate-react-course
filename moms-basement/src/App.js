@@ -3,6 +3,7 @@ import Title from "./Title.js";
 import TaskSelector from "./TaskSelector.js";
 import { initialTasks } from "./TaskSelector.js";
 import { useState } from "react";
+import Footer from "./Footer.js";
 
 export default function App() {
   const [tasks, setTasks] = useState(initialTasks);
@@ -45,6 +46,7 @@ export default function App() {
         currentSelectedTask={currentSelectedTask}
         onChangeSelectedTask={handleChangeSelectedTask}
       />
+      <Footer />
     </>
   );
 }
