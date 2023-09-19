@@ -57,6 +57,9 @@ export default function TaskSelector({
       .slice()
       .sort((a, b) => Number(b.creation_date) - Number(a.creation_date));
 
+  if (sortBy === "name")
+    sortedTasks = tasks.slice().sort((a, b) => a.name.localeCompare(b.name));
+
   return (
     <>
       <div className="task-selector">
@@ -74,6 +77,7 @@ export default function TaskSelector({
             <option value="unpleasantness">Unpleasantness</option>
             <option value="priority">Priority</option>
             <option value="age">Age</option>
+            <option value="name">Name</option>
           </select>
         </form>
       </div>
