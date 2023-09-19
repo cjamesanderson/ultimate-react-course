@@ -37,6 +37,7 @@ export default function TaskSelector({
   onUpdateTask,
   currentSelectedTask,
   onChangeSelectedTask,
+  onAddTaskMinutes,
 }) {
   const [sortBy, setSortBy] = useState("unpleasantness");
 
@@ -68,7 +69,11 @@ export default function TaskSelector({
           onChangeSelectedTask={onChangeSelectedTask}
           taskOrder={sortBy}
         />
-        <SelectedTask task={currentSelectedTask} onUpdateTask={onUpdateTask} />
+        <SelectedTask
+          task={currentSelectedTask}
+          onUpdateTask={onUpdateTask}
+          onAddTaskMinutes={onAddTaskMinutes}
+        />
       </div>
       <div className="sort-controls">
         <form>

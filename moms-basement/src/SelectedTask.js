@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function SelectedTask({ task, onUpdateTask }) {
+export default function SelectedTask({ task, onUpdateTask, onAddTaskMinutes }) {
   const [effort, setEffort] = useState("");
   const [finished, setFinished] = useState(task.completed);
 
@@ -8,6 +8,9 @@ export default function SelectedTask({ task, onUpdateTask }) {
     e.preventDefault();
 
     onUpdateTask(task, task.minutes_logged + effort, finished);
+
+    if (effort !== 0) onAddTaskMinutes(effort, task.unpleasantness);
+
     setEffort(0);
   }
 

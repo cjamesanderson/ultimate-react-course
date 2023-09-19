@@ -10,6 +10,7 @@ export default function App() {
   const [currentSelectedTask, setCurrentSelectedTask] = useState(
     initialTasks[0]
   );
+  const [taskMinutes, setTaskMinutes] = useState(0);
 
   function handleAddTask(task) {
     setTasks((curr) => [...curr, task]);
@@ -36,6 +37,11 @@ export default function App() {
     setCurrentSelectedTask(task);
   }
 
+  function handleAddTaskMinutes(minutes, unpleasantness) {
+    console.log(minutes, unpleasantness);
+    setTaskMinutes((curr) => curr + minutes * unpleasantness);
+  }
+
   return (
     <>
       <Title />
@@ -45,8 +51,9 @@ export default function App() {
         onUpdateTask={handleUpdateTask}
         currentSelectedTask={currentSelectedTask}
         onChangeSelectedTask={handleChangeSelectedTask}
+        onAddTaskMinutes={handleAddTaskMinutes}
       />
-      <Footer />
+      <Footer taskMinutes={taskMinutes} />
     </>
   );
 }
