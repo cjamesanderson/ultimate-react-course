@@ -5,7 +5,7 @@ export const initialTasks = [
   {
     name: "clean toilet",
     id: 1,
-    creation_date: "5-10-23",
+    creation_date: new Date("5-10-23").getTime(),
     completed: false,
     minutes_logged: 0,
     unpleasantness: 5,
@@ -14,7 +14,7 @@ export const initialTasks = [
   {
     name: "do laundry",
     id: 2,
-    creation_date: "5-11-23",
+    creation_date: new Date("5-11-23").getTime(),
     completed: false,
     minutes_logged: 5,
     unpleasantness: 2,
@@ -23,7 +23,7 @@ export const initialTasks = [
   {
     name: "clean out mom's basement",
     id: 3,
-    creation_date: "5-13-23",
+    creation_date: new Date("5-13-23").getTime(),
     completed: false,
     minutes_logged: 50,
     unpleasantness: 9,
