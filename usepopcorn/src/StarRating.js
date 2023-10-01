@@ -28,7 +28,9 @@ export default function StarRating({
   className,
   messages = [],
   defaultRating = 0,
-  onSetRating,
+  onSetRating = () => {
+    return;
+  },
 }) {
   const [rating, setRating] = useState(defaultRating);
   const [tempRating, setTempRating] = useState(0);
