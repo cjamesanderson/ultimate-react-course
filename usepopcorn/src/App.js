@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { is } from "@babel/types";
+import { useEffect, useState } from "react";
 
 const tempMovieData = [
   {
@@ -216,9 +217,28 @@ function Main({ children }) {
   return <main className="main">{children}</main>;
 }
 
+function Loader() {
+  return <p className="loader">Loading...</p>
+}
+
 export default function App() {
-  const [movies, setMovies] = useState(tempMovieData);
-  const [watched, setWatched] = useState(tempWatchedData);
+  const [movies, setMovies] = useState([]);
+  const [watched, setWatched] = useState([]);
+  const [isLoading, setIsLoading] = useState(false)
+
+  const KEY = "7f8622c3"
+  const tempQuery = "Interstellar";
+
+  useEffect(function () { 
+    async function fetchMovies() {
+      setIsLoading(true)
+      const res = await fetch(`https://www.omdbapi.com/?s=${tempQuery}&apikey=${KEY}`);
+      const data = await res.json();
+      setMovies(data.Search);
+      setIsLoading(false)
+    }
+    fetchMovies()
+  }, [])
   return (
     <>
       <Navbar>
@@ -227,7 +247,7 @@ export default function App() {
       </Navbar>
       <Main>
         <Box>
-          <MovieList movies={movies} />
+          {isLoading ? <Loader /> : <MovieList movies={movies} />}
         </Box>
         <Box>
           <WatchedSummary watched={watched} />
