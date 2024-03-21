@@ -234,7 +234,7 @@ export default function App() {
   const [error, setError] = useState('');
 
   const KEY = "7f8622c3";
-  const tempQuery = "Interstellar";
+  const tempQuery = "asdasd";
 
   useEffect(function () { 
     async function fetchMovies() {
@@ -244,6 +244,8 @@ export default function App() {
         res = await fetch(`https://www.omdbapi.com/?s=${tempQuery}&apikey=${KEY}`);
 
         const data = await res.json();
+        if(data.Response === "False") throw new Error("Movie not found");
+
         setMovies(data.Search);
       } catch (err) {
         let message;
