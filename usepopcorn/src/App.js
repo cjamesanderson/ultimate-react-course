@@ -51,8 +51,7 @@ const tempWatchedData = [
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
-function Search() {
-  const [query, setQuery] = useState("");
+function Search({query, setQuery}) {
   return (
     <input
       className="search"
@@ -227,13 +226,14 @@ function ErrorMessage({message}) {
   </p>
 }
 
+const KEY = "7f8622c3";
+
 export default function App() {
+  const [query, setQuery] = useState("inception");
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-
-  const KEY = "7f8622c3";
   const tempQuery = "Interstellar";
 
   useEffect(function () { 
@@ -241,10 +241,11 @@ export default function App() {
       let res;
       try {
         setIsLoading(true);
-        res = await fetch(`https://www.omdbapi.com/?s=${tempQuery}&apikey=${KEY}`);
+        setError("");
+        res = await fetch(`https://www.omdbapi.com/?s=${query}&apikey=${KEY}`);
 
         const data = await res.json();
-        if(data.Response === "False") throw new Error(`Movie not found: "${tempQuery}"`);
+        if(data.Response === "False") throw new Error(`Movie not found: "${query}"`);
 
         setMovies(data.Search);
       } catch (err) {
@@ -260,12 +261,19 @@ export default function App() {
         setIsLoading(false);
       }
     }
+
+    if(query.length < 3) {
+      setMovies([]);
+      setError("");
+      return;
+    }
+
     fetchMovies();
-  }, [])
+  }, [query])
   return (
     <>
       <Navbar>
-        <Search />
+        <Search query={query} setQuery={setQuery}/>
         <NumResults movies={movies} />
       </Navbar>
       <Main>
