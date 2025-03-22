@@ -51,7 +51,7 @@ const tempWatchedData = [
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
-function Search({query, setQuery}) {
+function Search({ query, setQuery }) {
   return (
     <input
       className="search"
@@ -217,13 +217,15 @@ function Main({ children }) {
 }
 
 function Loader() {
-  return <p className="loader">Loading...</p>
+  return <p className="loader">Loading...</p>;
 }
 
-function ErrorMessage({message}) {
-  return <p className="error">
-    <span>⛔</span> {message}
-  </p>
+function ErrorMessage({ message }) {
+  return (
+    <p className="error">
+      <span>⛔</span> {message}
+    </p>
+  );
 }
 
 function MovieDetails({selectedId, onCloseMovie, onAddWatched, watched}) {
@@ -307,6 +309,7 @@ function MovieDetails({selectedId, onCloseMovie, onAddWatched, watched}) {
     </>
 }
     </div>
+  );
 }
 
 const KEY = "7f8622c3";
@@ -316,11 +319,11 @@ export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [selectedId, setSelectedId] = useState(null);
 
   function handleSelectMovie(id) {
-    setSelectedId((selectedId) => id === selectedId ? null : id);
+    setSelectedId((selectedId) => (id === selectedId ? null : id));
   }
 
   function handleCloseMovie() {
@@ -355,40 +358,44 @@ export default function App() {
         const data = await res.json();
         if(data.Response === "False") throw new Error(`Movie not found: "${query}"`);
 
-        setMovies(data.Search);
-      } catch (err) {
-        let message;
-        if(!res || !res.ok) {
-          message = "Something went wrong with fetching movies";
-        } else {
-          message = err.message;
+          setMovies(data.Search);
+        } catch (err) {
+          let message;
+          if (!res || !res.ok) {
+            message = "Something went wrong with fetching movies";
+          } else {
+            message = err.message;
+          }
+          console.error(message);
+          setError(message);
+        } finally {
+          setIsLoading(false);
         }
-        console.error(message);
-        setError(message);
-      } finally {
-        setIsLoading(false);
       }
-    }
 
-    if(query.length < 3) {
-      setMovies([]);
-      setError("");
-      return;
-    }
+      if (query.length < 3) {
+        setMovies([]);
+        setError("");
+        return;
+      }
 
-    fetchMovies();
-  }, [query])
+      fetchMovies();
+    },
+    [query]
+  );
   return (
     <>
       <Navbar>
-        <Search query={query} setQuery={setQuery}/>
+        <Search query={query} setQuery={setQuery} />
         <NumResults movies={movies} />
       </Navbar>
       <Main>
         <Box>
           {/*isLoading ? <Loader /> : <MovieList movies={movies} />*/}
           {isLoading && <Loader />}
-          {!isLoading && !error && <MovieList movies={movies} onSelectMovie={handleSelectMovie}/>}
+          {!isLoading && !error && (
+            <MovieList movies={movies} onSelectMovie={handleSelectMovie} />
+          )}
           {error && <ErrorMessage message={error} />}
         </Box>
         <Box>
