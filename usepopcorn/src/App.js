@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import StarRating from "./StarRating";
 
+/*
 const tempMovieData = [
   {
     imdbID: "tt1375666",
@@ -47,6 +48,7 @@ const tempWatchedData = [
     userRating: 9,
   },
 ];
+*/
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
@@ -292,6 +294,20 @@ function MovieDetails({selectedId, onCloseMovie, onAddWatched, watched}) {
       document.title = "usePopcorn";
     }
   }, [title])
+
+  useEffect(function() {
+  function handleEscape(e) {
+    if(e.code === "Escape") {
+      onCloseMovie();
+    }
+  }
+    document.addEventListener("keydown", handleEscape);
+
+    return function() {
+      document.removeEventListener("keydown", handleEscape);
+    }
+  }, [onCloseMovie]);
+
 
   return <div className="details">
     {isLoading ? <Loader /> : 
