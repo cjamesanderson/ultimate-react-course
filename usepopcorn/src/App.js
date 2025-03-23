@@ -348,7 +348,7 @@ function MovieDetails({selectedId, onCloseMovie, onAddWatched, watched}) {
 const KEY = "7f8622c3";
 
 export default function App() {
-  const [query, setQuery] = useState("inception");
+  const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -407,7 +407,7 @@ export default function App() {
           let message;
           if (err.name !== "AbortError") {
             message = err.message;
-            console.error(message);
+            console.log(message);
             setError(message);
           }
         } finally {
@@ -420,7 +420,8 @@ export default function App() {
         setError("");
         return;
       }
-
+      
+      handleCloseMovie();
       fetchMovies();
 
       return function() {
