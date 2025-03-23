@@ -370,26 +370,30 @@ export default function App() {
   
 
   useEffect(function () { 
+    const controller = new AbortController();
     async function fetchMovies() {
-      let res;
       try {
         setIsLoading(true);
         setError("");
-        res = await fetch(`https://www.omdbapi.com/?s=${query}&apikey=${KEY}`);
+        const res = await fetch(`https://www.omdbapi.com/?s=${query}&apikey=${KEY}`, 
+          { signal: controller.signal }
+        );
+
+        if (!res || !res.ok) 
+          throw new Error("Something went wrong with fetching movies");
 
         const data = await res.json();
         if(data.Response === "False") throw new Error(`Movie not found: "${query}"`);
 
-          setMovies(data.Search);
-        } catch (err) {
+        setMovies(data.Search);
+        setError("");
+      } catch (err) {
           let message;
-          if (!res || !res.ok) {
-            message = "Something went wrong with fetching movies";
-          } else {
+          if (err.name !== "AbortError") {
             message = err.message;
+            console.error(message);
+            setError(message);
           }
-          console.error(message);
-          setError(message);
         } finally {
           setIsLoading(false);
         }
@@ -402,6 +406,10 @@ export default function App() {
       }
 
       fetchMovies();
+
+      return function() {
+        controller.abort();
+      }
     },
     [query]
   );
